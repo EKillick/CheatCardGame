@@ -6,9 +6,8 @@ package cheatcardgame;
 public class CheatCardGame {
 
     public static void main(String[] args) {
-    Card twoOfHearts = new Card(Card.Rank.TWO, Card.Suit.CLUB);
+    Card twoOfHearts = new Card(Card.Rank.TWO, Card.Suit.SPADES);
     System.out.println(twoOfHearts.toString());
-    System.out.println(Card.Rank.ACE.getNext());
     }
     
 }

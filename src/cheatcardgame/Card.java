@@ -37,7 +37,7 @@ public class Card implements Serializable, Comparable {
      * An enum representing all the suits a card can have
      */
     protected enum Suit{
-        CLUB, DIAMONDS, HEARTS, SPADES
+        CLUBS, DIAMONDS, HEARTS, SPADES;
     }
     
     private Rank rank;
@@ -70,6 +70,21 @@ public class Card implements Serializable, Comparable {
         returnString.append(rank);
         returnString.append("\nCard Suit: ");
         returnString.append(suit);
+        
+        //Appends Unicode characters for each suit
+        switch (this.getSuit()){
+            case CLUBS:
+                returnString.append(" ").append((char)'\u2663');
+                break;
+            case DIAMONDS:
+                returnString.append(" ").append((char)'\u2666');
+                break;
+            case HEARTS:
+                returnString.append(" ").append((char)'\u2665');
+                break;
+            case SPADES:
+                returnString.append(" ").append((char)'\u2660');
+        }
         
         return returnString.toString();
     }
