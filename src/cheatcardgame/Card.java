@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author 6277497
  */
-public class Card implements Serializable, Comparable {
+public class Card implements Serializable, Comparable<Card> {
     static final long serialVersionUID = 100;
     
     /**
@@ -89,9 +89,38 @@ public class Card implements Serializable, Comparable {
         return returnString.toString();
     }
     
-    //To be implemented
-    @Override
-    public int compareTo(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /*
+    A method to return the difference in ranks between two cards
+    Eg. the difference between TEN and QUEEN is 2
+    */
+    public static int difference(Card a, Card b){
+        return (a.rank.ordinal() - b.rank.ordinal());
     }
+    
+    /*
+    A method to return the difference in values between two cards
+    Eg. the difference between TEN and QUEEN is 0
+    */
+    public static int differenceValue(Card a, Card b){
+        return (a.rank.value - b.rank.value);
+    }
+    
+    
+    //To be reconsidered
+    /**
+     * An implementation of the compareTo method
+     * @param other card to be compared to the invoking card
+     * @return the difference in rank between the two cards
+     */
+        @Override
+    public int compareTo(Card other) {
+        int result = this.getRank().compareTo(other.getRank());
+        if (result == 0){
+            return result;
+        }
+        else{
+            return (other.rank.value - this.rank.value);
+        }
+    }
+
 }
