@@ -13,7 +13,7 @@ Rank and Suit. It should have a single constructor with the Rank and
 Suit passed as arguments.  <b>DONE</b>
 4. Make this class Comparable so that compareTo can be used to sort the cards
 into ascending order (*see footnote). You should make proper use of generics for
-this.
+this. <b>USE GENERICS</b>
 5. Implement accessor methods getRank()and getSuit() that simply return
 the rank and suit.  <b>DONE</b>
 6. Add a toString()method that informatively displays a card.  <b>ROOM FOR IMPROVEMENT</b>
