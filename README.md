@@ -18,9 +18,9 @@ this. <b>USE GENERICS</b>
 the rank and suit.  <b>DONE</b>
 6. Add a toString()method that informatively displays a card.  <b>ROOM FOR IMPROVEMENT</b>
 7. Add a static method called difference that returns the difference in ranks
-between two cards (so the difference between TEN and QUEEN is 2).  
+between two cards (so the difference between TEN and QUEEN is 2).  <b>DONE</b>
 8. Add a static method called differenceValue that returns the difference in
-values between two cards (so the difference between TEN and QUEEN is 0).  
+values between two cards (so the difference between TEN and QUEEN is 0).  <b>DONE</b>
 9. Add two Comparator nested classes. One, called CompareDescending,
 should be used to sort the cards into descending order by rank (*see footnote), the
 other, CompareSuit, should be used to sort into ascending order of suit, i.e. all
