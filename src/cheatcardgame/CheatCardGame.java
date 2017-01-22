@@ -12,5 +12,4 @@ public class CheatCardGame {
     System.out.println(Card.difference(twoOfHearts, otherCard));
     System.out.println(Card.differenceValue(twoOfHearts, otherCard));
     }
-    
 }

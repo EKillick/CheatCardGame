@@ -1,6 +1,7 @@
 package cheatcardgame;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  *
@@ -105,6 +106,23 @@ public class Card implements Serializable, Comparable<Card> {
         return (a.rank.value - b.rank.value);
     }
     
+    class CompareDescending implements Comparator<Card>{
+
+        @Override
+        public int compare(Card t, Card t1) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
+    }
+    
+    class CompareSuit implements Comparator<Card>{
+
+        @Override
+        public int compare(Card t, Card t1) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    }
     
     //To be reconsidered
     /**
