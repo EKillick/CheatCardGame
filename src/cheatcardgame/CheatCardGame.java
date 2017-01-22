@@ -14,6 +14,6 @@ public class CheatCardGame {
 //    System.out.println(Card.differenceValue(twoOfHearts, otherCard));
     Deck testDeck = new Deck();
 //    System.out.println(testDeck);
-    Deck.deckShuffle();
+//    Deck.deckShuffle();
     }
 }
