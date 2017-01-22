@@ -41,7 +41,7 @@ i.e. for the descending sort the rank order is reversed, but the suit order is m
 <h3>Deck Class:</h3>  
 1. Deck should contain a list of Cards.  
 2. The Deck constructor should create the list and initialise all the cards in the deck.  
-A Deck should start with all possible 52 cards.
+A Deck should start with all possible 52 cards. <b>DONE</b>
 3. Write a method to shuffle the deck that randomises the cards. To gain full
 marks for this section you should write your own method to shuffle rather than
 use the built in Collections method.  
