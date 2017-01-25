@@ -7,7 +7,7 @@ import java.util.Random;
  * A class to represent a Deck of cards
  * @author 6277497
  */
-public class Deck extends ArrayList{
+public class Deck{
 
     
     private static ArrayList<Card> deckOfCards;
@@ -29,20 +29,21 @@ public class Deck extends ArrayList{
      * A method to return the size of the deck
      * @return an integer representing the size of the deck
      */
-    public static int deckSize(){
+    public int deckSize(){
         return deckOfCards.size();
     }
     
-    
-    public Deck deckShuffle(){
-//        for (int i = 0; i < deckOfCards.size(); i++) {
-//            Deck shuffleDeck = new Deck();
-//            shuffleDeck = deckOfCards;
-//            Random rand = new Random();
-//            int index = rand.nextInt(i);
-//            
-//        }
-        return null;
+    /**
+     *
+     */
+    public void deckShuffle(){
+        for (int i = 0; i < deckSize(); i++) {
+            Random rand = new Random();
+            int randNum = rand.nextInt(52);
+            Card tempCard = deckOfCards.get(randNum);
+            deckOfCards.set(randNum, deckOfCards.get(i));
+            deckOfCards.set(i, tempCard);       
+            }
     }
     
     @Override

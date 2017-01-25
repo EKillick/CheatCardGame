@@ -6,7 +6,6 @@ import java.util.Comparator;
 /**
  * TO DO:
  * Correct JavaDocs - including returns
- * Add Rank to compareTo method?
  * Implement Comparator methods
  * Enhance toString method
  */
@@ -121,33 +120,38 @@ public class Card implements Serializable, Comparable<Card> {
     /**
      * A method to return the difference in values between two cards
      * Eg. the difference between TEN and QUEEN is 0
-     * @param a
-     * @param b
-     * @return 
+     * @param a Card to be compared
+     * @param b Card to be compared
+     * @return difference in value between the two cards
      */
     public static int differenceValue(Card a, Card b){
         return (a.rank.value - b.rank.value);
     }
     
+    /**
+     * 
+     */
     class CompareDescending implements Comparator<Card>{
 
         @Override
         public int compare(Card t, Card t1) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return t.compareTo(t1);
         }
         
     }
     
+    /**
+     * 
+     */
     class CompareSuit implements Comparator<Card>{
 
         @Override
         public int compare(Card t, Card t1) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            return t.getSuit().compareTo(t1.getSuit());
         }
         
     }
     
-    //To be reconsidered
     /**
      * An implementation of the compareTo method
      * @param other card to be compared to the invoking card
@@ -155,13 +159,11 @@ public class Card implements Serializable, Comparable<Card> {
      */
     @Override
     public int compareTo(Card other) {
-        int result = this.getRank().compareTo(other.getRank());
+        int result = this.getSuit().compareTo(other.getSuit());
         if (result == 0){
-            return result;
+            result = this.getRank().compareTo(other.getRank());
         }
-        else{
-            return (difference(this, other));
-        }
+        return result;
     }
 
 }
