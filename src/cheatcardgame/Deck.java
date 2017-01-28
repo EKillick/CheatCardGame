@@ -10,7 +10,7 @@ import java.util.Random;
 public class Deck{
 
     
-    private static ArrayList<Card> deckOfCards;
+    private final ArrayList<Card> deckOfCards;
     
     /**
      * 
@@ -44,6 +44,14 @@ public class Deck{
             deckOfCards.set(randNum, deckOfCards.get(i));
             deckOfCards.set(i, tempCard);       
             }
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Card> getDeck(){
+        return this.deckOfCards;
     }
     
     @Override

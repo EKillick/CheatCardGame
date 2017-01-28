@@ -6,7 +6,6 @@ import java.util.Comparator;
 /**
  * TO DO:
  * Correct JavaDocs - including returns
- * Implement Comparator methods
  * Enhance toString method
  */
 
@@ -50,8 +49,8 @@ public class Card implements Serializable, Comparable<Card> {
         CLUBS, DIAMONDS, HEARTS, SPADES;
     }
     
-    private Rank rank;
-    private Suit suit;
+    private final Rank rank;
+    private final Suit suit;
     
     /**
      * A constructor to create a card object - take two parameters
@@ -114,7 +113,7 @@ public class Card implements Serializable, Comparable<Card> {
      * @return 
      */
     public static int difference(Card a, Card b){
-        return (a.rank.ordinal() - b.rank.ordinal());
+        return Math.abs(a.rank.ordinal() - b.rank.ordinal());
     }
     
     /**
@@ -125,31 +124,38 @@ public class Card implements Serializable, Comparable<Card> {
      * @return difference in value between the two cards
      */
     public static int differenceValue(Card a, Card b){
-        return (a.rank.value - b.rank.value);
+        return Math.abs(a.rank.value - b.rank.value);
     }
     
     /**
      * 
      */
-    class CompareDescending implements Comparator<Card>{
-
+    public static class CompareDescending implements Comparator<Card>{
+        public CompareDescending(){};
         @Override
         public int compare(Card t, Card t1) {
-            return t.compareTo(t1);
-        }
-        
-    }
+            int result = t1.getRank().compareTo(t.getRank());
+            if (result == 0){      
+                result = t.getSuit().compareTo(t1.getSuit());
+            }
+            return result;
+        }    
+}
+    
     
     /**
      * 
      */
-    class CompareSuit implements Comparator<Card>{
-
+    public static class CompareSuit implements Comparator<Card>{
+        public CompareSuit(){};
         @Override
         public int compare(Card t, Card t1) {
-            return t.getSuit().compareTo(t1.getSuit());
-        }
-        
+            int result = t.getSuit().compareTo(t1.getSuit());
+            if (result == 0){      
+                result = t.getRank().compareTo(t1.getRank());
+            }
+            return result;
+        }        
     }
     
     /**
@@ -159,9 +165,9 @@ public class Card implements Serializable, Comparable<Card> {
      */
     @Override
     public int compareTo(Card other) {
-        int result = this.getSuit().compareTo(other.getSuit());
-        if (result == 0){
-            result = this.getRank().compareTo(other.getRank());
+        int result = this.getRank().compareTo(other.getRank());
+        if (result == 0){      
+            result = this.getSuit().compareTo(other.getSuit());
         }
         return result;
     }
