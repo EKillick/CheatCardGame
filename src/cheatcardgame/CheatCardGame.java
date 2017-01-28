@@ -21,5 +21,7 @@ public class CheatCardGame {
     System.out.println(testDeck + "\n\n");
     Collections.sort(testDeck.getDeck(), new Card.CompareDescending());
     System.out.println(testDeck + "\n\n");
+    testDeck.deal();
+    System.out.println(testDeck + "\n\n");
     }
 }

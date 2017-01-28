@@ -17,19 +17,26 @@ public class Deck{
      */
     public Deck(){
         deckOfCards = new ArrayList<>();
+        createDeck();
+    }
+        
+    /**
+     * A method to create a Deck from an ArrayList of Cards
+     */    
+    public final void createDeck(){
         for (Card.Suit suit : Card.Suit.values()){
             for (Card.Rank rank : Card.Rank.values()){
                Card tempCard =  new Card(rank, suit);
                deckOfCards.add(tempCard);
             }
         }
-    }    
+    }
     
     /**
      * A method to return the size of the deck
      * @return an integer representing the size of the deck
      */
-    public int deckSize(){
+    public int size(){
         return deckOfCards.size();
     }
     
@@ -37,9 +44,9 @@ public class Deck{
      *
      */
     public void deckShuffle(){
-        for (int i = 0; i < deckSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             Random rand = new Random();
-            int randNum = rand.nextInt(52);
+            int randNum = rand.nextInt(deckOfCards.size());
             Card tempCard = deckOfCards.get(randNum);
             deckOfCards.set(randNum, deckOfCards.get(i));
             deckOfCards.set(i, tempCard);       
@@ -54,6 +61,26 @@ public class Deck{
         return this.deckOfCards;
     }
     
+    /**
+     * A method to remove and return a card from the top of the deck
+     * @return Card removed from the deck
+     */
+    public Card deal(){
+        Card returnCard = deckOfCards.remove(deckOfCards.size() - 1);
+        return returnCard;
+    }
+    
+    /**
+     * A method to reinitialise a deck
+     */
+    public final void newDeck(){
+        deckOfCards.clear();
+        createDeck();
+        
+    }
+    
+    
+    
     @Override
     public String toString(){
         StringBuilder returnString = new StringBuilder();
@@ -61,7 +88,7 @@ public class Deck{
             returnString.append(cardInDeck);
         }
         returnString.append("Deck Size: ");
-        returnString.append(deckSize());
+        returnString.append(size());
         return returnString.toString();
     }
 }
