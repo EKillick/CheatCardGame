@@ -107,22 +107,45 @@ public class Deck implements Serializable, Iterable<Card>{
      */
     public class OddEvenIterator implements Iterator<Card>{
         
+        private int deckPos = 0;
+        
         /**
          * 
          * @return 
          */
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (deckPos %2 == 0){
+                return true;
+            }
+            if (deckPos %2 != 0 && deckPos < deckOfCards.size()){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
-
+        
         /**
          * 
          * @return 
          */
         @Override
         public Card next() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Card returnCard = null;
+            if (deckPos %2 == 0 && deckPos < deckOfCards.size()){
+                returnCard = deckOfCards.get(deckPos);
+                deckPos+=2;
+            }
+            else if(deckPos %2 == 0 && deckPos > deckOfCards.size()){
+                deckPos = 1;
+                returnCard = deckOfCards.get(deckPos);
+                deckPos+=2;
+            }
+            else if (deckPos %2 != 0 && deckPos < deckOfCards.size()){
+                
+            }
+            return returnCard;
         }
         
     }    
