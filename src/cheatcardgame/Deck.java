@@ -1,14 +1,16 @@
 package cheatcardgame;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+import java.io.Serializable;
 
 /**
  * A class to represent a Deck of cards
  * @author 6277497
  */
-public class Deck{
-
+public class Deck implements Serializable, Iterable<Card>{
+    static final long serialVersionUID = 101;
     
     private final ArrayList<Card> deckOfCards;
     
@@ -78,9 +80,57 @@ public class Deck{
         createDeck();
         
     }
+
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public Iterator<Card> iterator() {
+        Iterator deckIterator = new Iterator<Card>(){
+
+            @Override
+            public boolean hasNext() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public Card next() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        return deckIterator;
+    }
     
+    /**
+     * 
+     */
+    public class OddEvenIterator implements Iterator<Card>{
+        
+        /**
+         * 
+         * @return 
+         */
+        @Override
+        public boolean hasNext() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        /**
+         * 
+         * @return 
+         */
+        @Override
+        public Card next() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    }    
     
-    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString(){
         StringBuilder returnString = new StringBuilder();
