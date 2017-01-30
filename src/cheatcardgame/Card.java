@@ -141,8 +141,7 @@ public class Card implements Serializable, Comparable<Card> {
             return result;
         }    
 }
-    
-    
+ 
     /**
      * 
      */

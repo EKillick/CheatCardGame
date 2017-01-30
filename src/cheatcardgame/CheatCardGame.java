@@ -1,6 +1,7 @@
 package cheatcardgame;
 
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  *
@@ -23,5 +24,11 @@ public class CheatCardGame {
     System.out.println(testDeck + "\n\n");
     testDeck.deal();
     System.out.println(testDeck + "\n\n");
+    
+    Iterator<Card> deckItr = testDeck.getOddEvenIterator();
+    while(deckItr.hasNext()){
+        System.out.print(deckItr.next());
+    }
+    
     }
 }

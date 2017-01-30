@@ -43,7 +43,7 @@ public class Deck implements Serializable, Iterable<Card>{
     }
     
     /**
-     *
+     * Shuffles the deck using the Fisher-Yates algorithm
      */
     public void deckShuffle(){
         for (int i = 0; i < size(); i++) {
@@ -56,8 +56,8 @@ public class Deck implements Serializable, Iterable<Card>{
     }
     
     /**
-     * 
-     * @return 
+     * Returns the deck in the form of an ArrayList
+     * @return ArrayList<Card> a deck in the form of an ArrayList of cards
      */
     public ArrayList<Card> getDeck(){
         return this.deckOfCards;
@@ -85,33 +85,29 @@ public class Deck implements Serializable, Iterable<Card>{
      * 
      * @return 
      */
+    public Iterator<Card> getOddEvenIterator(){
+        return new OddEvenIterator();
+    }
+    
+    /**
+     * Returns the default iterator
+     * @return 
+     */
     @Override
     public Iterator<Card> iterator() {
-        Iterator deckIterator = new Iterator<Card>(){
-
-            @Override
-            public boolean hasNext() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Card next() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        return deckIterator;
+        return deckOfCards.iterator();
     }
     
     /**
      * 
      */
-    public class OddEvenIterator implements Iterator<Card>{
+    private class OddEvenIterator implements Iterator<Card>{
         
         private int deckPos = 0;
         
         /**
-         * 
-         * @return 
+         * An iterator method that returns whether there's a next card
+         * @return Boolean, true if there's a card, false otherwise
          */
         @Override
         public boolean hasNext() {
@@ -127,13 +123,13 @@ public class Deck implements Serializable, Iterable<Card>{
         }
         
         /**
-         * 
-         * @return 
+         * An iterator method to get the next card in the deck if there is one
+         * @return Card - the next card in the deck
          */
         @Override
         public Card next() {
             Card returnCard = null;
-            if (deckPos %2 == 0 && deckPos < deckOfCards.size()){
+            if (deckPos < deckOfCards.size()){
                 returnCard = deckOfCards.get(deckPos);
                 deckPos+=2;
             }
@@ -142,16 +138,13 @@ public class Deck implements Serializable, Iterable<Card>{
                 returnCard = deckOfCards.get(deckPos);
                 deckPos+=2;
             }
-            else if (deckPos %2 != 0 && deckPos < deckOfCards.size()){
-                
-            }
             return returnCard;
         }
         
     }    
     
     /**
-     * 
+     * A toString method to print out a deck of cards
      * @return 
      */
     @Override
