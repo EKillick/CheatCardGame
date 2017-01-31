@@ -1,5 +1,11 @@
 package cheatcardgame;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -12,7 +18,7 @@ import java.io.Serializable;
 public class Deck implements Serializable, Iterable<Card>{
     static final long serialVersionUID = 101;
     
-    private final ArrayList<Card> deckOfCards;
+    private ArrayList<Card> deckOfCards;
     
     /**
      * 
@@ -81,8 +87,42 @@ public class Deck implements Serializable, Iterable<Card>{
         
     }
 
+    private void writeObject(ObjectOutputStream out) throws IOException{
+        
+        ArrayList<Card> oddEvenList = new ArrayList<>();
+        Iterator<Card> deckItr = new OddEvenIterator();
+        while(deckItr.hasNext()){
+            oddEvenList.add(deckItr.next());
+        }
+        out.writeObject(oddEvenList);
+    }
+
+    //calls writeobject
+    public void saveDeck(){
+        String filename = "oddEvenDeck.ser";
+        try(FileOutputStream fos = new FileOutputStream(filename); 
+            ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            writeObject(oos);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        } 
+    }
+    
+    public void readObject() throws IOException{
+        String filename = "oddEvenDeck.ser";
+        try{
+            FileInputStream fos = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fos);
+            deckOfCards = (ArrayList<Card>) ois.readObject(); 
+            }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }     
+    }
+    
     /**
-     * 
+     * Returns the custom oddEven Iterator
      * @return 
      */
     public Iterator<Card> getOddEvenIterator(){
@@ -99,11 +139,11 @@ public class Deck implements Serializable, Iterable<Card>{
     }
     
     /**
-     * 
+     * An iterator that first goes through cards in even positions, then odd
      */
     private class OddEvenIterator implements Iterator<Card>{
         
-        private int deckPos = 0;
+        private int deckPos = 0; //start of even numbers
         
         /**
          * An iterator method that returns whether there's a next card
@@ -133,8 +173,8 @@ public class Deck implements Serializable, Iterable<Card>{
                 returnCard = deckOfCards.get(deckPos);
                 deckPos+=2;
             }
-            else if(deckPos %2 == 0 && deckPos > deckOfCards.size()){
-                deckPos = 1;
+            else if(deckPos %2 == 0 && deckPos >= deckOfCards.size()){
+                deckPos = 1; // start of odd numbers
                 returnCard = deckOfCards.get(deckPos);
                 deckPos+=2;
             }
@@ -150,7 +190,7 @@ public class Deck implements Serializable, Iterable<Card>{
     @Override
     public String toString(){
         StringBuilder returnString = new StringBuilder();
-        for (Card cardInDeck : deckOfCards) {
+            for (Card cardInDeck : deckOfCards) {
             returnString.append(cardInDeck);
         }
         returnString.append("Deck Size: ");
