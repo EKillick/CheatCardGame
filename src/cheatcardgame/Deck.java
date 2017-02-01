@@ -58,7 +58,7 @@ public class Deck implements Serializable, Iterable<Card>{
             Card tempCard = deckOfCards.get(randNum);
             deckOfCards.set(randNum, deckOfCards.get(i));
             deckOfCards.set(i, tempCard);       
-            }
+        }
     }
     
     /**
@@ -105,7 +105,7 @@ public class Deck implements Serializable, Iterable<Card>{
             writeObject(oos);
         }
         catch(IOException ex){
-            ex.printStackTrace();
+            System.err.println(ex);
         } 
     }
     
@@ -116,8 +116,8 @@ public class Deck implements Serializable, Iterable<Card>{
             ObjectInputStream ois = new ObjectInputStream(fos);
             deckOfCards = (ArrayList<Card>) ois.readObject(); 
             }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(IOException | ClassNotFoundException ex){
+            System.err.println(ex);
         }     
     }
     

@@ -27,23 +27,26 @@ public class CheatCardGame {
 //    testDeck.deal();
 //    System.out.println(testDeck + "\n\n");
     
-//    Iterator<Card> deckItr = testDeck.getOddEvenIterator();
-//    while(deckItr.hasNext()){
-//        System.out.print(deckItr.next());
-//    }
+    Iterator<Card> deckItr = testDeck.getOddEvenIterator();
+    while(deckItr.hasNext()){
+        System.out.print(deckItr.next());
+    }
     
 //    System.out.println(testDeck);
-    testDeck.saveDeck();
-    try{
-        testDeck.readObject();
-    }
-    catch(Exception e){
-        e.printStackTrace();
-    }
-    System.out.println(testDeck);
     
- 
+    //SERIALIZABLE TEST
+//    testDeck.saveDeck();
+//    try{
+//        testDeck.readObject();
+//    }
+//    catch(Exception e){
+//        e.printStackTrace();
+//    }
+//    System.out.println(testDeck);
     
+    Hand testHand = new Hand(testDeck.getDeck());
+    System.out.println(testHand.handValue());
+   
     
     }
 }
