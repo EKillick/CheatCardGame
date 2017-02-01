@@ -211,6 +211,15 @@ public class Hand implements Serializable, Iterable<Card>{
     }
     
     /**
+     * Returns the number of cards in a given rank in a hand
+     * @param rank the rank to be counted
+     * @return an integer count of the number of cards with that rank
+     */
+    public int countRank(Card.Suit rank){
+        return suitCount[rank.ordinal()];
+    }
+    
+    /**
      * Returns the default iterator
      * @return 
      */
@@ -218,4 +227,30 @@ public class Hand implements Serializable, Iterable<Card>{
     public Iterator<Card> iterator() {
         return handOfCards.iterator();
     }   
+    
+    /**
+     * 
+     * @param hand
+     * @return 
+     */
+    public boolean isFlush(Hand hand){
+        
+    }
+    
+    /**
+     * 
+     * @param hand
+     * @return 
+     */
+    public boolean isStraight(Hand hand){
+        
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String toString(){
+    }
 }
