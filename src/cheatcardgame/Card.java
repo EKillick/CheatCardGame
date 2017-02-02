@@ -4,12 +4,6 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * TO DO:
- * Correct JavaDocs - including returns
- * Enhance toString method
- */
-
-/**
  *
  * @author 6277497
  */
@@ -22,6 +16,7 @@ public class Card implements Serializable, Comparable<Card> {
     protected enum Rank{
         TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8),
         NINE(9), TEN(10), JACK(10), QUEEN(10), KING(10), ACE(11);
+        //Stores the value of each card
         final int value;
         Rank(int x){
             value = x;
@@ -49,6 +44,7 @@ public class Card implements Serializable, Comparable<Card> {
         CLUBS, DIAMONDS, HEARTS, SPADES;
     }
     
+    //Variables for each Card object
     private final Rank rank;
     private final Suit suit;
     
@@ -78,39 +74,12 @@ public class Card implements Serializable, Comparable<Card> {
         return this.suit;
     }
     
-    //Prints out the value and suit of a given card
-    @Override
-    public String toString(){
-        StringBuilder returnString = new StringBuilder();
-        returnString.append(rank);
-        returnString.append(" of ");
-        returnString.append(suit);
-        returnString.append("\n");
-        
-//        //Appends Unicode characters for each suit
-//        switch (this.getSuit()){
-//            case CLUBS:
-//                returnString.append(" ").append((char)'\u2663');
-//                break;
-//            case DIAMONDS:
-//                returnString.append(" ").append((char)'\u2666');
-//                break;
-//            case HEARTS:
-//                returnString.append(" ").append((char)'\u2665');
-//                break;
-//            case SPADES:
-//                returnString.append(" ").append((char)'\u2660');
-//        }
-//        
-        return returnString.toString();
-    }
-    
     /**
-     * A method to return the difference in ranks between two cards
+     * A method to return the absolute difference in ranks between two cards
      * Eg. the difference between TEN and QUEEN is 2
-     * @param a
-     * @param b
-     * @return 
+     * @param a Card to be compared
+     * @param b Card to be compared
+     * @return int - diffference in ranks between the cards
      */
     public static int difference(Card a, Card b){
         return Math.abs(a.rank.ordinal() - b.rank.ordinal());
@@ -128,10 +97,18 @@ public class Card implements Serializable, Comparable<Card> {
     }
     
     /**
-     * 
+     * A comparator class that uses compareTo
+     * Sorts cards in descending order
      */
     public static class CompareDescending implements Comparator<Card>{
         public CompareDescending(){};
+        
+        /**
+         * A method to compare two cards, used to sort descending
+         * @param t Card to be compared
+         * @param t1 Card to be compared
+         * @return int - 0 if equal
+         */
         @Override
         public int compare(Card t, Card t1) {
             int result = t1.getRank().compareTo(t.getRank());
@@ -140,13 +117,21 @@ public class Card implements Serializable, Comparable<Card> {
             }
             return result;
         }    
-}
+    }
  
     /**
-     * 
+     * A comparator class that uses compareTo
+     * Sorts cards by suit first, then by rank
      */
     public static class CompareSuit implements Comparator<Card>{
         public CompareSuit(){};
+        
+        /**
+         * A method to compare Cards, first by suit, then by rank
+         * @param t Card to be compared
+         * @param t1 Card to be compared
+         * @return int - 0 if equal
+         */
         @Override
         public int compare(Card t, Card t1) {
             int result = t.getSuit().compareTo(t1.getSuit());
@@ -169,6 +154,36 @@ public class Card implements Serializable, Comparable<Card> {
             result = this.getSuit().compareTo(other.getSuit());
         }
         return result;
+    }
+    
+    /**
+     * Prints out the value and suit of a given card
+     * @return String to be printed out
+     */
+    @Override
+    public String toString(){
+        StringBuilder returnString = new StringBuilder();
+        returnString.append(rank);
+        returnString.append(" of ");
+        returnString.append(suit);
+        
+        //Appends Unicode characters for each suit
+        switch (this.getSuit()){
+            case CLUBS:
+                returnString.append(" ").append((char)'\u2663');
+                break;
+            case DIAMONDS:
+                returnString.append(" ").append((char)'\u2666');
+                break;
+            case HEARTS:
+                returnString.append(" ").append((char)'\u2665');
+                break;
+            case SPADES:
+                returnString.append(" ").append((char)'\u2660');
+        }
+        
+        returnString.append("\n");
+        return returnString.toString();
     }
 
 }

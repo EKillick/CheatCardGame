@@ -233,24 +233,24 @@ public class Hand implements Serializable, Iterable<Card>{
      * @param hand
      * @return 
      */
-    public boolean isFlush(Hand hand){
-        
-    }
+//    public boolean isFlush(Hand hand){
+//        
+//    }
     
     /**
      * 
      * @param hand
      * @return 
      */
-    public boolean isStraight(Hand hand){
-        
-    }
+//    public boolean isStraight(Hand hand){
+//        
+//    }
     
     /**
      * 
      * @return 
      */
-    @Override
-    public String toString(){
-    }
+//    @Override
+//    public String toString(){
+//    }
 }
