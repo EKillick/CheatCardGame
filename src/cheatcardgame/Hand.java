@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 /**
- *
+ * A class to represent a Hand of Cards
  * @author 6277497
  */
 public class Hand implements Serializable, Iterable<Card>{
@@ -15,6 +15,8 @@ public class Hand implements Serializable, Iterable<Card>{
     
     private final ArrayList<Card> handOfCards;
     private final ArrayList<Card> sortedHandOfCards;
+    
+    //A variable keeping track of the value of a Hand
     private static int handValue = 0;
     
     //An array to keep count of each rank in a hand
@@ -107,8 +109,7 @@ public class Hand implements Serializable, Iterable<Card>{
      */
     public void add(Collection<Card> handCollection){
         for (Card card: handCollection){
-            handOfCards.add(card);
-            sortedHandOfCards.add(card);
+            this.add(card);
             incrementCounts(card);
         }
     }
@@ -119,8 +120,7 @@ public class Hand implements Serializable, Iterable<Card>{
      */
     public void add(Hand hand){
         for (Card card: hand){
-            handOfCards.add(card);
-            sortedHandOfCards.add(card);
+            this.add(card);
             incrementCounts(card);
         }
     }
@@ -147,12 +147,9 @@ public class Hand implements Serializable, Iterable<Card>{
      * @param hand - hand containing the cards to be removed
      * @return true if all cards were successfully removed, false otherwise
      */
-//    public boolean remove(Hand hand){
-//        for (Card card : hand){
-//            
-//            
-//        }
-//    }
+    public boolean remove(Hand hand){
+        return handOfCards.removeAll(hand.getHand());
+    }
     
     /**
      * Removes a card in a given position from a Hand
@@ -233,9 +230,9 @@ public class Hand implements Serializable, Iterable<Card>{
      * @param hand
      * @return 
      */
-//    public boolean isFlush(Hand hand){
-//        
-//    }
+    public boolean isFlush(Hand hand){
+        
+    }
     
     /**
      * 

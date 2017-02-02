@@ -21,7 +21,8 @@ public class Deck implements Serializable, Iterable<Card>{
     private ArrayList<Card> deckOfCards;
     
     /**
-     * 
+     * A constructor to create an empty arrayList
+     * Calls createDeck() to populate the list
      */
     public Deck(){
         deckOfCards = new ArrayList<>();
@@ -74,8 +75,7 @@ public class Deck implements Serializable, Iterable<Card>{
      * @return Card removed from the deck
      */
     public Card deal(){
-        Card returnCard = deckOfCards.remove(deckOfCards.size() - 1);
-        return returnCard;
+        return deckOfCards.remove(deckOfCards.size() - 1);
     }
     
     /**
@@ -87,6 +87,11 @@ public class Deck implements Serializable, Iterable<Card>{
         
     }
 
+    /**
+     * A writeObject method to be used when the deck is saved
+     * @param out
+     * @throws IOException 
+     */
     private void writeObject(ObjectOutputStream out) throws IOException{
         
         ArrayList<Card> oddEvenList = new ArrayList<>();
@@ -97,7 +102,9 @@ public class Deck implements Serializable, Iterable<Card>{
         out.writeObject(oddEvenList);
     }
 
-    //calls writeobject
+    /**
+     * A method that calls writeObject to save the deck
+     */
     public void saveDeck(){
         String filename = "oddEvenDeck.ser";
         try(FileOutputStream fos = new FileOutputStream(filename); 
@@ -109,6 +116,10 @@ public class Deck implements Serializable, Iterable<Card>{
         } 
     }
     
+    /**
+     * A method to read the serialised Deck object
+     * @throws IOException 
+     */
     public void readObject() throws IOException{
         String filename = "oddEvenDeck.ser";
         try{
@@ -123,7 +134,7 @@ public class Deck implements Serializable, Iterable<Card>{
     
     /**
      * Returns the custom oddEven Iterator
-     * @return 
+     * @return Iterator - oddEvenIterator
      */
     public Iterator<Card> getOddEvenIterator(){
         return new OddEvenIterator();
@@ -131,7 +142,7 @@ public class Deck implements Serializable, Iterable<Card>{
     
     /**
      * Returns the default iterator
-     * @return 
+     * @return Iterator - default iterator
      */
     @Override
     public Iterator<Card> iterator() {
@@ -185,7 +196,7 @@ public class Deck implements Serializable, Iterable<Card>{
     
     /**
      * A toString method to print out a deck of cards
-     * @return 
+     * @return String representation of a Deck
      */
     @Override
     public String toString(){
