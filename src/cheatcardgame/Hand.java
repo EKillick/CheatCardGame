@@ -110,7 +110,6 @@ public class Hand implements Serializable, Iterable<Card>{
     public void add(Collection<Card> handCollection){
         for (Card card: handCollection){
             this.add(card);
-            incrementCounts(card);
         }
     }
       
@@ -121,7 +120,6 @@ public class Hand implements Serializable, Iterable<Card>{
     public void add(Hand hand){
         for (Card card: hand){
             this.add(card);
-            incrementCounts(card);
         }
     }
     
@@ -166,6 +164,14 @@ public class Hand implements Serializable, Iterable<Card>{
             return null;
         }
     
+    }
+    
+    /**
+     * A method to return the size of the deck
+     * @return an integer representing the size of the deck
+     */
+    public int size(){
+        return handOfCards.size();
     }
     
     /**
@@ -226,12 +232,19 @@ public class Hand implements Serializable, Iterable<Card>{
     }   
     
     /**
-     * 
+     * Returns True is all cards are of the same suit, false otherwise
      * @param hand
-     * @return 
+     * @return True if flush, False otherwise
      */
     public boolean isFlush(Hand hand){
-        
+        Card.Suit suitComp = hand.handOfCards.get(0).getSuit();
+        for (Card card : hand){
+            if (card.getSuit() != suitComp)
+            {
+                return false;
+            }
+        }
+        return true;
     }
     
     /**
@@ -239,15 +252,29 @@ public class Hand implements Serializable, Iterable<Card>{
      * @param hand
      * @return 
      */
-//    public boolean isStraight(Hand hand){
-//        
-//    }
+    public boolean isStraight(Hand hand){
+        sortAscending();
+        for (int i = 0; i < (hand.size() - 1); i++){
+            if (Card.differenceValue(sortedHandOfCards.get(i), 
+                    sortedHandOfCards.get(i+1)) != 1){
+                return false;
+            }
+        }
+        return true;
+    }
     
     /**
-     * 
+     * A toString method to print out a Hand of cards
      * @return 
      */
-//    @Override
-//    public String toString(){
-//    }
-}
+    @Override
+    public String toString(){
+        StringBuilder returnString = new StringBuilder();
+            for (Card cardInHand : handOfCards) {
+            returnString.append(cardInHand);
+        }
+        returnString.append("Hand Size: ");
+        returnString.append(size());
+        return returnString.toString();
+        }
+    }

@@ -1,5 +1,6 @@
 package cheatcardgame;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -8,41 +9,25 @@ import java.util.Iterator;
  */
 public class CardTest {
     public static void main(String[] args) {
-    Card twoOfHearts = new Card(Card.Rank.TWO, Card.Suit.HEARTS);
-    Card otherCard = new Card(Card.Rank.QUEEN, Card.Suit.HEARTS);
-//    System.out.println(twoOfHearts.toString());
-//    System.out.println(twoOfHearts.compareTo(otherCard));
-//    System.out.println(Card.difference(twoOfHearts, otherCard));
-//    System.out.println(Card.differenceValue(twoOfHearts, otherCard));
-    Deck testDeck = new Deck();
-    System.out.println(testDeck + "\n\n");
-//    testDeck.deckShuffle();
-//    System.out.println(testDeck + "\n\n");
-//    Collections.sort(testDeck.getDeck(), new Card.CompareDescending());
-//    System.out.println(testDeck + "\n\n");
-//    testDeck.deal();
-//    System.out.println(testDeck + "\n\n");
-    
-    Iterator<Card> deckItr = testDeck.getOddEvenIterator();
-    while(deckItr.hasNext()){
-        System.out.print(deckItr.next());
-    }
-    
-//    System.out.println(testDeck);
-    
-    //SERIALIZABLE TEST
-//    testDeck.saveDeck();
-//    try{
-//        testDeck.readObject();
-//    }
-//    catch(Exception e){
-//        e.printStackTrace();
-//    }
-//    System.out.println(testDeck);
-    
-    Hand testHand = new Hand(testDeck.getDeck());
-    System.out.println(testHand.handValue());
-   
-    
-    }
+        System.out.println("CARD CLASS - TESTING");
+        System.out.println("--------------------");
+        System.out.println("twoOfHearts, threeOfHearts and fiveOfHearts created");
+        Card twoOfHearts = new Card(Card.Rank.TWO, Card.Suit.HEARTS);
+        Card threeOfHearts = new Card(Card.Rank.THREE, Card.Suit.HEARTS);
+        Card queenOfHearts = new Card(Card.Rank.QUEEN, Card.Suit.HEARTS);
+        System.out.print("\nPrinting twoOfHearts: ");
+        System.out.println(twoOfHearts);
+        System.out.print("twoOfHearts.getRank().getNext(): ");
+        System.out.println(twoOfHearts.getRank().getNext());
+        System.out.print("\ntwoOfHearts.compareTo(threeOfHearts): ");
+        System.out.println(twoOfHearts.compareTo(threeOfHearts));
+        System.out.print("\nCard.difference(twoOfHearts, threeOfHearts): ");
+        System.out.println(Card.difference(twoOfHearts, threeOfHearts));
+        System.out.print("\ntwoOfHearts.getSuit(): ");
+        System.out.println(twoOfHearts.getSuit());
+        System.out.print("\ndifference(twoOfHearts, queenOfHearts: ");
+        System.out.println(Card.difference(twoOfHearts, queenOfHearts));
+        System.out.print("\ndifferenceValue(twoOfHearts, queenOfHearts): ");
+        System.out.println(Card.differenceValue(twoOfHearts, queenOfHearts));
+        }
 }

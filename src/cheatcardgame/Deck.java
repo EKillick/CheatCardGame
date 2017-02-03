@@ -83,8 +83,7 @@ public class Deck implements Serializable, Iterable<Card>{
      */
     public final void newDeck(){
         deckOfCards.clear();
-        createDeck();
-        
+        createDeck();     
     }
 
     /**
