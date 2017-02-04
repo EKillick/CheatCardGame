@@ -186,4 +186,12 @@ public class Card implements Serializable, Comparable<Card> {
         return returnString.toString();
     }
 
+    /**
+     * Runs the CardTest class
+     * @param args 
+     */
+    public static void main(String[] args) {
+        CardTest.main(args);
+    }
+    
 }

@@ -207,4 +207,12 @@ public class Deck implements Serializable, Iterable<Card>{
         returnString.append(size());
         return returnString.toString();
     }
+    
+    /**
+     * Runs the DeckTest class
+     * @param args 
+     */
+    public static void main(String[] args) {
+        DeckTest.main(args);
+    }
 }

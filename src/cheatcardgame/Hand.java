@@ -282,6 +282,18 @@ public class Hand implements Serializable, Iterable<Card>{
     }
     
     /**
+     * A method to print a sorted Hand for testing purposes
+     * @return 
+     */
+    public String printSorted(){
+        StringBuilder returnString = new StringBuilder();
+            for (Card cardInHand : sortedHandOfCards) {
+            returnString.append(cardInHand);
+        }
+        return returnString.toString();
+        }
+    
+    /**
      * A toString method to print out a Hand of cards
      * @return 
      */
@@ -295,4 +307,12 @@ public class Hand implements Serializable, Iterable<Card>{
         returnString.append(size());
         return returnString.toString();
         }
+    
+    /**
+     * Runs the HandTest class
+     * @param args 
+     */
+    public static void main(String[] args) {
+        HandTest.main(args);
     }
+}

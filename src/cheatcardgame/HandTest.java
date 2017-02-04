@@ -22,14 +22,19 @@ public class HandTest {
         System.out.println(emptyHand.countSuit(Card.Suit.HEARTS));
         System.out.print("\nCounting the number of Queens: ");
         System.out.println(emptyHand.countRank(Card.Rank.QUEEN));
-       
-//        System.out.print("\nRemoving twoOfHearts and getting new value: ");
-//        emptyHand.remove(twoOfHearts);
-//        System.out.println(emptyHand.handValue());
-
- 
-//
-//        System.out.println(emptyHand.isFlush(emptyHand));
-//        System.out.println(emptyHand.isStraight(emptyHand));
+        System.out.print("\nRunning isFlush on the Hand (should be true): ");
+        System.out.println(emptyHand.isFlush(emptyHand));
+        System.out.print("\nRunning isStraight on the Hand (should be false): ");
+        System.out.println(emptyHand.isStraight(emptyHand));
+        System.out.println("\nRunning sortAscending on the deck: ");
+        emptyHand.sortAscending();
+        System.out.println(emptyHand.printSorted());
+        System.out.println("Running sortDescending on the deck: ");
+        emptyHand.sortDescending();
+        System.out.println(emptyHand.printSorted());
+        System.out.print("Removing twoOfHearts and getting new deck value: ");
+        emptyHand.remove(twoOfHearts);
+        System.out.println(emptyHand.handValue());       
+        
         }
 }
