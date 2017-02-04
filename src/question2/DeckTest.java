@@ -1,6 +1,7 @@
 
-package cheatcardgame;
+package question2;
 
+import cheatcardgame.*;
 import java.util.Collections;
 import java.util.Iterator;
 

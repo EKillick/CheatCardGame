@@ -1,4 +1,4 @@
-package cheatcardgame;
+package question2;
 
 /**
  *
