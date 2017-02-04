@@ -1,6 +1,5 @@
 package question2;
 
-import cheatcardgame.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,7 +52,7 @@ public class Deck implements Serializable, Iterable<Card>{
     /**
      * Shuffles the deck using the Fisher-Yates algorithm
      */
-    public void deckShuffle(){
+    public void shuffle(){
         for (int i = 0; i < size(); i++) {
             Random rand = new Random();
             int randNum = rand.nextInt(deckOfCards.size());

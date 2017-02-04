@@ -25,7 +25,7 @@ public class DeckTest {
         testDeck.saveDeck();
         
         System.out.println("\nShuffling the deck: ");
-        testDeck.deckShuffle();
+        testDeck.shuffle();
         System.out.println(testDeck);
         System.out.println("\nDealing a card and sorting the deck: ");
         testDeck.deal();

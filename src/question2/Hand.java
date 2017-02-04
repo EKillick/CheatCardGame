@@ -29,9 +29,7 @@ public class Hand implements Serializable, Iterable<Card>{
     //Size is based on the number of values in the Suit enum
     int numberOfSuits = Card.Suit.values().length;
     int[] suitCount = new int[numberOfSuits];
-    
-    
-    
+
     /**
      * Default constructor to create an empty Hand object
      */
