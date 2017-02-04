@@ -22,12 +22,14 @@ public class Hand implements Serializable, Iterable<Card>{
     //An array to keep count of each rank in a hand
     //Size is based on the number of values in the Rank enum
     int numberOfRanks = Card.Rank.values().length;
-    int[] rankCount = new int[numberOfRanks];
+    int[] rankCount = new int[numberOfRanks+1];
     
     //An array to keep count of each suit in a hand
     //Size is based on the number of values in the Suit enum
     int numberOfSuits = Card.Suit.values().length;
     int[] suitCount = new int[numberOfSuits];
+    
+    
     
     /**
      * Default constructor to create an empty Hand object
@@ -191,6 +193,22 @@ public class Hand implements Serializable, Iterable<Card>{
     }
     
     /**
+     * A method to return the suitCount array
+     * @return int[] suitCount array
+     */
+    public int[] getSuitCount(){
+        return suitCount;
+    }
+    
+    /**
+     * A method to return the rankCount array
+     * @return int[] rankCount array
+     */
+    public int[] getRankCount(){
+        return rankCount;
+    }
+    
+    /**
      * A method to sort the deck using the Card compareTo method
      */
     public void sortAscending(){
@@ -218,8 +236,8 @@ public class Hand implements Serializable, Iterable<Card>{
      * @param rank the rank to be counted
      * @return an integer count of the number of cards with that rank
      */
-    public int countRank(Card.Suit rank){
-        return suitCount[rank.ordinal()];
+    public int countRank(Card.Rank rank){
+        return rankCount[rank.ordinal()];
     }
     
     /**
