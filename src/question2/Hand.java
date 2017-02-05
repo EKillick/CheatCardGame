@@ -1,6 +1,5 @@
 package question2;
 
-import cheatcardgame.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -147,7 +146,8 @@ public class Hand implements Serializable, Iterable<Card>{
      * @return true if all cards were successfully removed, false otherwise
      */
     public boolean remove(Hand hand){
-        return handOfCards.removeAll(hand.getHand());
+        return hand.getHand().removeAll(handOfCards);
+//        return handOfCards.removeAll(hand.getHand());
     }
     
     /**

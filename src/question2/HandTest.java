@@ -35,7 +35,22 @@ public class HandTest {
         System.out.println(emptyHand.printSorted());
         System.out.print("Removing twoOfHearts and getting new deck value: ");
         emptyHand.remove(twoOfHearts);
-        System.out.println(emptyHand.handValue());       
+        System.out.println(emptyHand.handValue()); 
+        
+//        System.out.println("...........");
+//        Hand dupeHand = new Hand(emptyHand);
+//        Hand dupeHand = new Hand();
+//        Card kingOfClubs = new Card(Card.Rank.KING, Card.Suit.CLUBS);
+//        Card threeOfSpades = new Card(Card.Rank.THREE, Card.Suit.SPADES);
+//        dupeHand.add(kingOfClubs);
+//        dupeHand.add(threeOfSpades);
+//        dupeHand.add(twoOfHearts);
+//        System.out.println("\nEMPTY: \n" + emptyHand);
+//        System.out.println("\nDUPE: \n" + dupeHand);
+//        System.out.println(emptyHand.remove(dupeHand));
+//        emptyHand.remove(dupeHand);
+//        System.out.println("\nDUPE: \n" + dupeHand);
+//        System.out.println(emptyHand);
         
         }
 }

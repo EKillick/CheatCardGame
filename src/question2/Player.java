@@ -23,8 +23,6 @@ public interface Player {
  * @param s: the player should contain a reference to its strategy
  */
 	void setStrategy(Strategy s);
-
-
 /**
  * Constructs a bid when asked to by the game. 	
  * @param b: the last bid accepted by the game. .

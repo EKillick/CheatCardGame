@@ -1,6 +1,5 @@
 package question2;
 
-import cheatcardgame.*;
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -26,7 +25,12 @@ public class Card implements Serializable, Comparable<Card> {
         /**
          * An array of all ranks to be used in the getNext method
          */
-        private static final Rank[] rankValues = values(); 
+        protected static final Rank[] rankValues = values(); 
+        
+        /**
+         * A variable storing the size of the enum
+         */
+        private static final int size = rankValues.length;
         
         /**
          * A function that returns the next enum value to the one given
