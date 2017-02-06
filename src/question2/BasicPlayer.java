@@ -73,20 +73,18 @@ public class BasicPlayer implements Player{
      */
     @Override
     public Bid playHand(Bid b) {
-        Bid playerBid = new Bid(playerHand, b.getRank());
-        return playerBid;
+        return strategy.chooseBid(b, playerHand, strategy.cheat(b, playerHand));
     }
 
     
     /**
-     * The last player's Bid
+     * Returns true if calling the last player a cheat
      * @param b - The last accepted bid
-     * @return - true if the player is cheating
+     * @return - true if calling the last player a cheat
      */
     @Override
     public boolean callCheat(Bid b) {
-        return false;
-        
+        return strategy.callCheat(playerHand, b);
     }
     
 }

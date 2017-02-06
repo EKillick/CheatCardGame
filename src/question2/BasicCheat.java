@@ -15,6 +15,7 @@ public class BasicCheat implements CardGame{
     }
     public BasicCheat(int n){
         nosPlayers=n;
+                
         players=new Player[nosPlayers];
         for(int i=0;i<nosPlayers;i++)
                 players[i]=(new BasicPlayer(new BasicStrategy(),this));
@@ -117,7 +118,7 @@ public class BasicCheat implements CardGame{
                     if(str.equals("Q")||str.equals("q")||str.equals("quit"))
                             finished=true;
                     int w=winner();
-                    if(w>0){
+                    if(w>=0){
                             System.out.println("The Winner is Player "+(w+1));
                             finished=true;
                     }

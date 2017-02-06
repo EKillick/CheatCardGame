@@ -184,6 +184,15 @@ public class Hand implements Serializable, Iterable<Card>{
     }
     
     /**
+     * Returns the card at a given position
+     * @param i
+     * @return 
+     */
+    public Card get(int i){
+        return handOfCards.get(i);
+    }
+    
+    /**
      * Returns the sorted hand in the form of an arrayList
      * @return 
      */

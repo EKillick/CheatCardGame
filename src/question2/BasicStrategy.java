@@ -38,29 +38,46 @@ public class BasicStrategy implements Strategy{
         Random rand = new Random();
         Card.Rank r = null;
         if (!cheat){
-            for (Card c : h){
-                if (c.getRank().equals(b.getRank())){
+            for (int i = 0; i < h.size()-1; i++){
+                if (h.get(i).getRank().equals(b.getRank())){
+                    h.remove(i);
                     r = b.getRank();
                 }
                 else{
                     r = b.getRank().getNext();
+                    h.remove(i+1);
                 }
             }
         }
         else{
             if (rand.nextBoolean()){
                 r = b.getRank();
+                h.remove(rand.nextInt(h.size()));
             }
             else{
                 r = b.getRank().getNext();
+                h.remove(rand.nextInt(h.size()));
             }
         }
         return new Bid(h, r);
     }
 
+    /**
+     * Decides whether or not to call cheat based on the player's hand
+     * @param h - the player's hand
+     * @param b - the current bid
+     * @return - true if calling cheat, false otherwise
+     */
     @Override
     public boolean callCheat(Hand h, Bid b) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int suitNum = b.getHand().size();
+            for (Card c : h){
+                if (c.getRank() == b.getRank()){
+                    suitNum++;
+                }
+            }
+        return (suitNum > 4);
+    
     }
     
 }
