@@ -37,29 +37,35 @@ public class BasicStrategy implements Strategy{
     public Bid chooseBid(Bid b, Hand h, boolean cheat) {
         Random rand = new Random();
         Card.Rank r = null;
+        Hand bidHand = new Hand();
         if (!cheat){
-            for (int i = 0; i < h.size()-1; i++){
+            for (int i = 0; i < h.size(); i++){
                 if (h.get(i).getRank().equals(b.getRank())){
-                    h.remove(i);
                     r = b.getRank();
-                }
-                else{
-                    r = b.getRank().getNext();
-                    h.remove(i+1);
+                    bidHand.add(h.remove(i));
                 }
             }
+            if (bidHand.size() == 0){
+                for (int j = 0; j < h.size(); j++){
+                    if (h.get(j).getRank().equals(b.getRank().getNext())){
+                        r = b.getRank().getNext();
+                        bidHand.add(h.remove(j));
+                    }
+                }
+            }        
         }
         else{
             if (rand.nextBoolean()){
                 r = b.getRank();
-                h.remove(rand.nextInt(h.size()));
+                bidHand.add(h.remove(rand.nextInt(h.size())));
             }
             else{
                 r = b.getRank().getNext();
-                h.remove(rand.nextInt(h.size()));
+                bidHand.add(h.remove(rand.nextInt(h.size())));
             }
         }
-        return new Bid(h, r);
+        System.out.println("Bid Hand " + bidHand);
+        return new Bid(bidHand, r);
     }
 
     /**

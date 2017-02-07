@@ -1,7 +1,5 @@
 package question2;
 
-import cheatcardgame.*;
-
 /**
  *
  * @author 6277497
