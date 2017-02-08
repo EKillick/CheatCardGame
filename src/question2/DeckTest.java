@@ -1,12 +1,11 @@
 
 package question2;
 
-import cheatcardgame.*;
 import java.util.Collections;
 import java.util.Iterator;
 
 /**
- *
+ * A testing class for the Deck class
  * @author EKillick
  */
 public class DeckTest {

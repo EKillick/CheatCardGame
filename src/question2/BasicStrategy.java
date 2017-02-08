@@ -85,5 +85,11 @@ public class BasicStrategy implements Strategy{
         return (suitNum > 4);
     
     }
+
+    /**
+     * Resets the player's discard hand
+     */
+    @Override
+    public void resetDiscardHand(){}
     
 }

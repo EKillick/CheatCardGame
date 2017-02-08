@@ -40,6 +40,10 @@ public class BasicCheat implements CardGame{
             if(i!=currentPlayer){
                 cheat=players[i].callCheat(currentBid);
                 if(cheat){
+                    //Resets the players' discard hands
+                    for(int j=0;j<players.length;j++){
+                            players[j].resetDiscardHand();
+                    }
                     System.out.println("Player called cheat by Player "+(i+1));
                     if(isCheat(currentBid)){	
 //CHEAT CALLED CORRECTLY
@@ -47,9 +51,10 @@ public class BasicCheat implements CardGame{
                         players[currentPlayer].addHand(discards);
                         System.out.println("Player cheats!");
                         System.out.println("Adding cards to player "+
-                                (currentPlayer+1)+players[currentPlayer]);
+                                (currentPlayer+1)+players[currentPlayer]);                     
 
                     }
+                 
                     else{
 //CHEAT CALLED INCORRECTLY
 //Give cards to caller i who is new currentPlayer
@@ -64,6 +69,9 @@ public class BasicCheat implements CardGame{
                     currentBid=new Bid();
 //Discards now reset to empty	
                     discards=new Hand();
+                    players[i].resetDiscardHand();
+//Go to the next player to prevent being stuck in a loop
+                    currentPlayer=(currentPlayer+1)%nosPlayers;
                 }
             }
         }

@@ -13,7 +13,7 @@ public class BasicPlayer implements Player{
     /**
      * Constructor to create a BasicPlayer object
      * @param strategy - Strategy to be used
-     * @param cheat - CardGame to be played
+     * @param cardGame - CardGame to be played
      */
     public BasicPlayer(Strategy strategy, CardGame cardGame){
         this.strategy = strategy;
@@ -85,6 +85,14 @@ public class BasicPlayer implements Player{
     @Override
     public boolean callCheat(Bid b) {
         return strategy.callCheat(playerHand, b);
+    }
+
+    /**
+     * Resets the player's discard hand
+     */
+    @Override
+    public void resetDiscardHand() {
+        strategy.resetDiscardHand();
     }
     
 }

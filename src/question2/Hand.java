@@ -2,6 +2,7 @@ package question2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -300,6 +301,14 @@ public class Hand implements Serializable, Iterable<Card>{
         }
         return returnString.toString();
         }
+    
+    public void clearHand(){
+        handOfCards.clear();
+        sortedHandOfCards.clear();
+        Arrays.fill(rankCount, 0);
+        Arrays.fill(suitCount, 0);
+        
+    }
     
     /**
      * A toString method to print out a Hand of cards

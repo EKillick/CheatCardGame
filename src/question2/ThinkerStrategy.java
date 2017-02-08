@@ -6,6 +6,8 @@ import java.util.Random;
  */
 public class ThinkerStrategy implements Strategy{
     Random rand = new Random();
+    Hand discardHand = new Hand();
+    private static final double CHEAT_CONFIDENCE = 10;
 
     /**
      * Decides whether to cheat or not
@@ -17,6 +19,7 @@ public class ThinkerStrategy implements Strategy{
     public boolean cheat(Bid b, Hand h) {
         boolean toCheat = true;
         for (Card c : h){
+            //If the player has the card, no need to cheat
             if (c.getRank().equals(b.getRank()) 
                     || c.getRank().equals(b.getRank().getNext())){
                 toCheat = false;
@@ -44,17 +47,27 @@ public class ThinkerStrategy implements Strategy{
             for (int i = 0; i < h.size(); i++){
                 if (h.get(i).getRank().equals(b.getRank())){
                     r = b.getRank();
-                    bidHand.add(h.remove(i));
+                    if (rand.nextInt(6)+1 != 1 || bidHand.size() == 0){
+                            //1 in 6 chance of not playing a card
+                            //Always plays a card if the hand is empty
+                            bidHand.add(h.remove(i));
+                        }              
                 }
             }
             if (bidHand.size() == 0){
                 for (int j = 0; j < h.size(); j++){
                     if (h.get(j).getRank().equals(b.getRank().getNext())){
                         r = b.getRank().getNext();
-                        bidHand.add(h.remove(j));
+                        if (rand.nextInt(6)+1 != 1 || bidHand.size() == 0){
+                            //1 in 6 chance of not playing a card
+                            //Always plays a card if the hand is empty
+                            bidHand.add(h.remove(j));
+                        }
                     }
                 }
-            }        
+            } 
+        //Keeps track of the cards the player played    
+        discardHand.add(bidHand);
         }
         else{
             //25% chance to play lower card
@@ -67,7 +80,7 @@ public class ThinkerStrategy implements Strategy{
                 bidHand.add(h.remove(rand.nextInt(h.size())));
             }
         }
-        System.out.println("Bid Hand " + bidHand);
+//        System.out.println("Bid Hand " + bidHand);
         return new Bid(bidHand, r);
     }
 
@@ -80,13 +93,32 @@ public class ThinkerStrategy implements Strategy{
     @Override
     public boolean callCheat(Hand h, Bid b) {
         int suitNum = b.getHand().size();
+        int randomInt = rand.nextInt(100)+1;
+//        System.out.println("Init " + suitNum);
             for (Card c : h){
-                if (c.getRank() == b.getRank()){
+                if (c.getRank().equals(b.getRank())){
                     suitNum++;
                 }
             }
-        return (suitNum > 4);
+//            System.out.println("Added " + discardHand.countRank(b.getRank()));
+            suitNum += discardHand.countRank(b.getRank());  
+//            System.out.println("Suit Num " + suitNum);
+//            System.out.println("CONFIDENCE: " + CHEAT_CONFIDENCE * suitNum);
+//            System.out.println("RAND: " + randomInt);
+            //Calls cheat if certain
+            if (suitNum > 4){
+                return true;
+            }
+        return (CHEAT_CONFIDENCE * suitNum > randomInt);
     
+    }
+    
+    /**
+     * A method to clear the discard hand when cheat is called
+     */
+    @Override
+    public void resetDiscardHand(){
+        discardHand.clearHand();
     }
     
 }   

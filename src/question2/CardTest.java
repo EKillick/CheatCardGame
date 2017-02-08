@@ -1,11 +1,6 @@
 package question2;
-
-import cheatcardgame.*;
-import java.util.Collections;
-import java.util.Iterator;
-
 /**
- *
+ * A testing class for the Card class
  * @author 6277497
  */
 public class CardTest {

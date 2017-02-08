@@ -35,5 +35,8 @@ public interface Strategy {
  */
 	
 	public boolean callCheat(Hand h,Bid b);
+        
+        
+        public void resetDiscardHand();
 
 }
