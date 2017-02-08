@@ -1,7 +1,8 @@
 package question2;
 import java.util.Random;
 /**
- *
+ * A Strategy that makes informed decisions on which cards to play and when
+ * to cheat. Adds a level of unpredictability to the player
  * @author 6277497
  */
 public class ThinkerStrategy implements Strategy{
@@ -86,6 +87,8 @@ public class ThinkerStrategy implements Strategy{
 
     /**
      * Decides whether or not to call cheat based on the player's hand
+     * Calculates the probability that the player is cheating and uses this to
+     * decide whether of not to call cheat
      * @param h - the player's hand
      * @param b - the current bid
      * @return - true if calling cheat, false otherwise

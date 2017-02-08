@@ -9,20 +9,44 @@ public class BasicCheat implements CardGame{
     private Hand discards;
     private Bid currentBid;
     
-
+    Strategy gameStrategy;
+    StrategyFactory sFactory = new StrategyFactory();
+    
+    Scanner strategyChoice = new Scanner(System.in);
+    char input;
+    
     public BasicCheat(){
         this(MINPLAYERS);
     }
     public BasicCheat(int n){
+        while(true){
+            System.out.println("Choose a strategy (M/T/B): ");
+            input = strategyChoice.next().charAt(0);
+            input = Character.toLowerCase(input);
+            if (input == 'm' || input == 't' || input == 'b'){
+                break;
+            }
+            if (input == 'q'){
+                System.exit(0);
+            }
+            else{
+                System.out.println("Please enter (B)asic, (T)hinker, "
+                        + "(M)yStrategy or (Q)uit");         
+            }
+        }
+        
+        
         nosPlayers=n;
                 
         players=new Player[nosPlayers];
-        for(int i=0;i<nosPlayers;i++)
-                players[i]=(new BasicPlayer(new ThinkerStrategy(),this));
+        for(int i=0;i<nosPlayers;i++){
+            gameStrategy = sFactory.getStrategy(input);
+                players[i]=(new BasicPlayer(gameStrategy,this));
+        }
         currentBid=new Bid();
         currentBid.setRank(Card.Rank.TWO);
         currentPlayer=0;
-    }
+        }
 
     @Override
     public boolean playTurn(){
