@@ -15,6 +15,7 @@ import java.util.Random;
 public class MyStrategy implements Strategy{
     Random rand = new Random();
     Hand discardHand = new Hand();
+    private static final double CHEAT_CONFIDENCE = 5;
     
 
     /**
@@ -25,7 +26,7 @@ public class MyStrategy implements Strategy{
      */
     @Override
     public boolean cheat(Bid b, Hand h) {
-        boolean toCheat = false;
+        boolean toCheat = true;
         //If the player can win by cheating, do so
         if (h.size() == 1){
             toCheat = true;
@@ -42,7 +43,6 @@ public class MyStrategy implements Strategy{
 
     @Override
     public Bid chooseBid(Bid b, Hand h, boolean cheat) {
-        Random rand = new Random();
         Card.Rank r = b.getRank();
         Hand bidHand = new Hand();
         if (!cheat){
@@ -60,11 +60,11 @@ public class MyStrategy implements Strategy{
                     }
                 }
             } 
+            
         //Keeps track of the cards the player played    
         discardHand.add(bidHand);
         }
-        
-        
+
         else{
             r = calculateWorst(b, h);
             for (Card card : h){
@@ -72,13 +72,13 @@ public class MyStrategy implements Strategy{
                     bidHand.add(card);
                 }
             }
+            bidHand.remove(h);
             if (rand.nextBoolean()){
                 r = b.getRank();
             }
             else{
                 r = b.getRank().getNext();
             }
-            bidHand.remove(h);
         }   
         return new Bid(bidHand, r);
     }
@@ -95,6 +95,7 @@ public class MyStrategy implements Strategy{
         for (Card card : playerHand){
             returnCard = card;
             temp = ((card.getRank().ordinal() - bid.getRank().ordinal()) + 13) % 13;
+            //Stores the greatest difference between two cards
             if (temp > maxDifference){
                 maxDifference = temp;
                 returnCard = card;
@@ -103,18 +104,36 @@ public class MyStrategy implements Strategy{
     return (returnCard.getRank());
     }
 
+    /**
+     * Decides whether or not to call cheat based on the player's hand
+     * @param h - the player's hand
+     * @param b - the current bid
+     * @return - true if calling cheat, false otherwise
+     */
     @Override
     public boolean callCheat(Hand h, Bid b) {
+        int randomInt = rand.nextInt(100)+1;
         int suitNum = b.getHand().size();
+        
             for (Card c : h){
-                if (c.getRank() == b.getRank()){
+                if (c.getRank().equals(b.getRank())){
                     suitNum++;
                 }
             }
-        return (suitNum > 4);
-    
+            suitNum += discardHand.countRank(b.getRank());  
+            //Calls cheat if certain
+            if (suitNum > 4){
+                return true;
+            }
+            if (discardHand.size() < 5){
+                return ((CHEAT_CONFIDENCE * 1.5 * suitNum) > randomInt);    
+            }
+        return (CHEAT_CONFIDENCE * suitNum > randomInt);
     }
 
+    /**
+     * Resets the player's discard hand
+     */
     @Override
     public void resetDiscardHand(){
         discardHand.clearHand();

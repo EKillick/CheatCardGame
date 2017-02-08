@@ -3,7 +3,9 @@ package question2;
 import java.util.Random;
 
 /**
- *
+ * A strategy that never cheats unless it has to
+ * It always plays the lowest rank possible
+ * It only calls cheat when it's certain a player is cheating
  * @author 6277497
  */
 public class BasicStrategy implements Strategy{
@@ -16,7 +18,7 @@ public class BasicStrategy implements Strategy{
      */
     @Override
     public boolean cheat(Bid b, Hand h) {
-        boolean toCheat = true;
+        boolean toCheat = true; 
         for (Card c : h){
             if (c.getRank().equals(b.getRank()) 
                     || c.getRank().equals(b.getRank().getNext())){
